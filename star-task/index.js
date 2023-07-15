@@ -1,3 +1,4 @@
+// VARIABLES
 const directorsInfo = [
     {
         name: 'Стивен Спилберг',
@@ -42,3 +43,35 @@ const directorsInfo = [
         top_rated_film: 'Далласский клуб покупателей'
     },
 ];
+
+const list = document.querySelector(".directors-list");
+
+// FUNCTIONS
+const newDirectorInfo = (director) => {
+    const listItem = document.createElement("li");
+    listItem.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-start");
+    list.append(listItem);
+
+    const directorInfoContainer = document.createElement("div");
+    directorInfoContainer.classList.add("ms-2", "me-auto");
+    listItem.append(directorInfoContainer);
+
+    const directorName = document.createElement("h4");
+    directorName.textContent = director.name;
+    directorInfoContainer.append(directorName);
+
+    const directorCareer = document.createElement("p");
+    directorCareer.textContent = director.career;
+    directorInfoContainer.append(directorCareer);
+
+    const directorFilms = document.createElement("a");
+    directorFilms.textContent = "Фильмография";
+    directorFilms.setAttribute("href", director.films);
+    listItem.append(directorFilms);
+};
+
+const addDirectorsInfo = () => {
+    directorsInfo.forEach(newDirectorInfo);
+};
+
+window.addEventListener("DOMContentLoaded", addDirectorsInfo);
