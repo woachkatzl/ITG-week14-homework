@@ -44,7 +44,11 @@ const directorsInfo = [
     },
 ];
 
+const topFilmsList = directorsInfo.map(director => director.top_rated_film);
+
+// PAGE ELEMENTS
 const list = document.querySelector(".directors-list");
+const filmsTitle = document.querySelector(".films-title");
 
 // FUNCTIONS
 const newDirectorInfo = (director) => {
@@ -70,8 +74,17 @@ const newDirectorInfo = (director) => {
     listItem.append(directorFilms);
 };
 
-const addDirectorsInfo = () => {
-    directorsInfo.forEach(newDirectorInfo);
+const addBestFilms = () => {
+    const filmsElement = document.createElement("p");
+    const filmsString = topFilmsList.join(", ");
+    filmsElement.textContent = filmsString;
+    filmsTitle.after(filmsElement);
 };
 
-window.addEventListener("DOMContentLoaded", addDirectorsInfo);
+const addInfo = () => {
+    directorsInfo.forEach(newDirectorInfo);
+    addBestFilms();
+};
+
+// EVENT LISTENERS
+window.addEventListener("DOMContentLoaded", addInfo);
